@@ -1,0 +1,61 @@
+NDG Brilliant Bridge:
+
+Author Nico De Gols
+http://www.hiredguns.be/
+
+
+INSTALLATION:
+
+1. Copy the content of system/third_party to your EE install system/third_party folder
+
+2. Go to your control panel add-on extension screen and install the extension
+
+3. If you don't have a product channel, create a channel to link the Brilliant Retail products with 
+
+4. Go to the extension settings, select your preferred channel and submit
+
+All currently available BR products will be mirrored to channel entries
+
+
+EXAMPLES:
+
+Use the following tag inside the {exp:brilliant_retail:product} tag to get the corresponding channel entry_id based on the Brilliant Retail product id
+
+{exp:ndg_bridge:entry_id product_id='{product_id}'}
+
+
+List product comments: 
+Important: mind the single quotes and double quotes notations when passing the lupin output as a parameter
+_______________________________________________________________________________________________________________
+
+{exp:comment:entries sort="asc" dynamic="no" entry_id="{exp:ndg_bridge:entry_id product_id='{product_id}'}" parse="inward"}
+{comment}
+<p>By {name} on {comment_date format="%Y %m %d"}</p>
+{/exp:comment:entries}
+
+
+Product comment form:
+_______________________________________________________________________________________________________________
+
+{exp:comment:form dynamic="no" entry_id="{exp:ndg_bridge:entry_id product_id='{product_id}'}" parse="inward"}
+{if logged_out}
+<p>Name: <input type="text" name="name" value="{name}" size="50" /></p>
+<p>Email: <input type="text" name="email" value="{email}" size="50" /></p>
+<p>Location: <input type="text" name="location" value="{location}" size="50" /></p>
+<p>URL: <input type="text" name="url" value="{url}" size="50" /></p>
+{/if}
+<p><textarea name="comment" cols="70" rows="10">{comment}</textarea></p>
+<p><input type="checkbox" name="save_info" value="yes" {save_info} /> Remember my personal information</p>
+<p><input type="checkbox" name="notify_me" value="yes" {notify_me} /> Notify me of follow-up comments?</p>
+<input type="submit" name="submit" value="Submit" />
+<input type="submit" name="preview" value="Preview" />
+{/exp:comment:form}
+
+
+Get other data assigned to the channel entries:
+_______________________________________________________________________________________________________________
+
+{exp:channel:entries channel="br_bridge" show_future_entries="yes" dynamic="no" entry_id="{exp:ndg_bridge:entry_id product_id='{product_id}'}" parse="inward"}
+Data from the product channel entry: {title}
+{/exp:channel:entries}
+
