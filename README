@@ -3,6 +3,10 @@ NDG Brilliant Bridge:
 Author Nico De Gols
 http://www.hiredguns.be/
 
+This repository contains an EE Extension and an EE plugin.  
+The extension closes the gap between Brilliant Retail products and channel entries.
+The plugin enables you to retrieve the product channel entry id based on a Brilliant Retail product.
+
 
 INSTALLATION:
 
