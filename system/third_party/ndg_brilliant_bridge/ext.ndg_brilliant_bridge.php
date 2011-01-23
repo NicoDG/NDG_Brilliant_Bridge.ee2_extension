@@ -145,7 +145,7 @@ class Ndg_brilliant_bridge_ext {
 			
 				//CREATE NEW ENTRY
 			
-				$this->create($bridge_data);
+				$this->create($data);
 			
 			}
 			
