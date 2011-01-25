@@ -51,6 +51,32 @@ var $return_data = "";
 			
   }
 
+  
+  function product_id(){
+  
+  	$entry_id = $this->EE->TMPL->fetch_param('entry_id');
+  
+  
+  	$this->EE->db->select('product_id');
+	$this->EE->db->where('entry_id', $entry_id); 
+	$this->EE->db->where('site_id', $this->EE->config->item('site_id')); 
+	$this->EE->db->from($this->EE->db->dbprefix('ndg_brilliant_bridge_lookup'));
+		
+	$query = $this->EE->db->get();
+
+	if ($query->num_rows() > 0)
+	{
+		$product_id = $query->row()->product_id;	
+	}else{
+		$product_id = 0;
+	}
+	
+	$this->return_data  = $product_id;
+	
+	return $this->return_data;
+			
+  }
+  
 	// --------------------------------------------------------------------
 
 	/**

@@ -117,7 +117,16 @@ class Ndg_brilliant_bridge_ext {
 				
 				if($this->EE->api_channel_entries->entry_exists($entry_id)){
 					
-					$success = $this->EE->api_channel_entries->update_entry($entry_id, $entry);
+					//$success = $this->EE->api_channel_entries->update_entry($entry_id, $entry);
+					
+					$entry_update = array(
+						"title" => $data["title"], 
+						"url_title" => url_title($data["title"], 'dash', TRUE)
+					); 	
+				
+					$this->EE->db->where('entry_id', $entry_id);
+					$this->EE->db->update('exp_channel_titles', $entry_update);
+					
 				
 				}else{
 				
